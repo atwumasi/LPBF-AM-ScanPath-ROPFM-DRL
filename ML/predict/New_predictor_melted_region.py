@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Nov 30 15:26:33 2022
 
-@author: Jin
-"""
 import time
 start_time = time.time()  # Record the start time
 import os
@@ -248,7 +243,7 @@ except:
         out_mesh = meshio.Mesh(points=points, cells={'hexahedron': cells})
         return out_mesh
 
-    #f = '/data/proy/training_8November/ML_micro-main/3_predict/saved_npy/process_eta'
+    
     f = '/home/atwumasi/Documents/Austine/training_8November/ML_micro-main/3_predict/data/example/neper/process_eta'
     id = np.load(f+'.npy')
     Nx, Ny, Nz = np.shape(id)
@@ -262,6 +257,8 @@ except:
     mesh.cell_data['ori_inds'] = [id.flatten(order='F')]
     mesh.write(f+'.vtu')
 
+
+# Analyze the Predicted Region for Grain Changes
 import jax.numpy as np
 import jax
 import numpy as onp
@@ -479,6 +476,7 @@ def compute_edges_in_order(pf_args):
     return edges_in_order
 
 
+## Original BFS Implementation. Not Robust
 # def BFS(edges_in_order, nonliquid, cell_ori_inds, pf_args, combined=True):
 #     num_graph_nodes = len(nonliquid)
 #     print(f"BFS...")
@@ -515,6 +513,8 @@ def compute_edges_in_order(pf_args):
 #         return grains_combined
 #     else:
 #         return grains
+
+
 from collections import deque
 import numpy as np
 
